@@ -29,6 +29,7 @@ Dấu hiệu khi backend chạy dc:
 
 2. Chạy frontend
 Step 1: cd tới frontend
+Step 2: npm install (để có thư mục node_modules)
 Step 2: Nhập "npx vite --host --port 5731"
 
 Dấu hiệu khi frontend chạy dc: Có link hiện ra
@@ -37,7 +38,7 @@ Dấu hiệu khi frontend chạy dc: Có link hiện ra
 
 - Bọn em thường dùng app IP webcam ở Google play
 
-- Khi nhấn start server thì nó sẽ hiện ra cái ip của camera, trông như thế này: http://192.168.1.60:8080 (Thầy có thể bấm vô link để điều chỉnh)
+- Khi nhấn start server thì nó sẽ hiện ra cái ip của camera, trông như thế này: http://192.168.1.60:8080 (Thầy có thể bấm vô link để điều chỉnh camera)
 - Mỗi lần bật là app đổi ip nên khúc connect cam vẫn phải thủ công một chút
 - Yêu cầu là laptop + điện thoại cùng wifi ạ
 
@@ -124,6 +125,11 @@ taskkill /PID <PID_NUMBER> /F
 - Em không muốn project bị chồng chéo logic, nên bọn em quyết định thiết kế theo hướng đó
 
 - Cách sửa: Chạy lại server và frontend từ đầu
+
+6. Frontend không khởi chạy
+- Terminal yêu cầu tải vite@7.2.4
+- Lí do: Chưa có node_modules
+- Solution: cd frontend => Tải dependencies với lệnh: npm install
 
 Nếu có vấn đề gì, xin hãy liên hệ với em
 # Email: hoangvanminh2100@gmail.com
