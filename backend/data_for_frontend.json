@@ -1,0 +1,182 @@
+[
+    {
+        "timestamp": "0:00:08",
+        "violence_probability": 0.005971724633127451
+    },
+    {
+        "timestamp": "0:00:04",
+        "violence_probability": 0.500744104385376
+    },
+    {
+        "timestamp": "0:00:30",
+        "violence_probability": 0.18910202383995056
+    },
+    {
+        "timestamp": "0:00:41",
+        "violence_probability": 5.279933361634903e-07
+    },
+    {
+        "timestamp": "0:00:40",
+        "violence_probability": 3.2311498898707214e-07
+    },
+    {
+        "timestamp": "0:00:16",
+        "violence_probability": 0.2442140281200409
+    },
+    {
+        "timestamp": "0:00:11",
+        "violence_probability": 0.04411165043711662
+    },
+    {
+        "timestamp": "0:00:17",
+        "violence_probability": 0.1143733561038971
+    },
+    {
+        "timestamp": "0:00:25",
+        "violence_probability": 0.9463634490966797
+    },
+    {
+        "timestamp": "0:00:44",
+        "violence_probability": 6.787305295574697e-08
+    },
+    {
+        "timestamp": "0:00:21",
+        "violence_probability": 0.6846410036087036
+    },
+    {
+        "timestamp": "0:00:34",
+        "violence_probability": 0.8659578561782837
+    },
+    {
+        "timestamp": "0:00:36",
+        "violence_probability": 0.5070850253105164
+    },
+    {
+        "timestamp": "0:00:23",
+        "violence_probability": 0.6873646378517151
+    },
+    {
+        "timestamp": "0:00:03",
+        "violence_probability": 0.13067683577537537
+    },
+    {
+        "timestamp": "0:00:01",
+        "violence_probability": 0.8506354689598083
+    },
+    {
+        "timestamp": "0:00:39",
+        "violence_probability": 3.0295016131276498e-06
+    },
+    {
+        "timestamp": "0:00:26",
+        "violence_probability": 0.7305019497871399
+    },
+    {
+        "timestamp": "0:00:15",
+        "violence_probability": 0.06939637660980225
+    },
+    {
+        "timestamp": "0:00:31",
+        "violence_probability": 0.21273921430110931
+    },
+    {
+        "timestamp": "0:00:28",
+        "violence_probability": 0.1859172135591507
+    },
+    {
+        "timestamp": "0:00:00",
+        "violence_probability": 0.5066688656806946
+    },
+    {
+        "timestamp": "0:00:29",
+        "violence_probability": 0.5696117877960205
+    },
+    {
+        "timestamp": "0:00:06",
+        "violence_probability": 0.8509477376937866
+    },
+    {
+        "timestamp": "0:00:13",
+        "violence_probability": 0.018652742728590965
+    },
+    {
+        "timestamp": "0:00:05",
+        "violence_probability": 0.7657131552696228
+    },
+    {
+        "timestamp": "0:00:07",
+        "violence_probability": 0.8261933326721191
+    },
+    {
+        "timestamp": "0:00:35",
+        "violence_probability": 0.6898789405822754
+    },
+    {
+        "timestamp": "0:00:10",
+        "violence_probability": 0.02568913996219635
+    },
+    {
+        "timestamp": "0:00:19",
+        "violence_probability": 0.993689775466919
+    },
+    {
+        "timestamp": "0:00:43",
+        "violence_probability": 7.61837455343084e-08
+    },
+    {
+        "timestamp": "0:00:42",
+        "violence_probability": 2.704122834984446e-06
+    },
+    {
+        "timestamp": "0:00:18",
+        "violence_probability": 0.995307981967926
+    },
+    {
+        "timestamp": "0:00:38",
+        "violence_probability": 4.907088850814034e-07
+    },
+    {
+        "timestamp": "0:00:27",
+        "violence_probability": 0.2941597104072571
+    },
+    {
+        "timestamp": "0:00:02",
+        "violence_probability": 0.3237287700176239
+    },
+    {
+        "timestamp": "0:00:12",
+        "violence_probability": 0.0074514541774988174
+    },
+    {
+        "timestamp": "0:00:37",
+        "violence_probability": 1.3509903737940476e-06
+    },
+    {
+        "timestamp": "0:00:24",
+        "violence_probability": 0.9857175350189209
+    },
+    {
+        "timestamp": "0:00:20",
+        "violence_probability": 0.9827477335929871
+    },
+    {
+        "timestamp": "0:00:32",
+        "violence_probability": 0.7661980986595154
+    },
+    {
+        "timestamp": "0:00:09",
+        "violence_probability": 0.005526441615074873
+    },
+    {
+        "timestamp": "0:00:33",
+        "violence_probability": 0.9412644505500793
+    },
+    {
+        "timestamp": "0:00:22",
+        "violence_probability": 0.8589152097702026
+    },
+    {
+        "timestamp": "0:00:14",
+        "violence_probability": 0.94928377866745
+    }
+]
