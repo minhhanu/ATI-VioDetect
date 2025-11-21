@@ -205,7 +205,7 @@ Lỗi liên quan tới __pycache__.
 
 Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương trình sẽ đạt hiệu suất ổn định.
 
-4. Server không chạy được
+# 4. Server không chạy được
 - Thường là do 1 trong 2 lỗi sau:
 +) Input type mismatch: Num of camera yêu cầu int, nhưng nhập giá trị khác (String...)
 +) Link camera không đúng: Khi backend không tìm thấy địa chỉ camera => Không có frame truyền vào server => cv2 found no frame
@@ -222,7 +222,7 @@ Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương tr
 
 - Cách sửa: Chạy lại server và frontend từ đầu
 
-6. Frontend không khởi chạy
+# 5. Frontend không khởi chạy
 - Terminal yêu cầu tải vite@7.2.4
 - Lí do: Chưa có node_modules
 - Solution: cd frontend => Tải dependencies với lệnh: npm install
