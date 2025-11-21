@@ -181,13 +181,13 @@ Tham khảo chi tiết trong frontend/package.json nếu cần rebuild hoặc ch
 
 ## V. Các lỗi thường gặp
 
-Port bị chiếm dụng
+# 1. Port bị chiếm dụng
 
 netstat -ano | findstr "TEN_PORT"
 taskkill /PID <PID_NUMBER> /F
 
 
-Không gửi/nhận dữ liệu qua API
+# 2. Không gửi/nhận dữ liệu qua API
 
 Kiểm tra frontend:
 
@@ -199,7 +199,7 @@ Kiểm tra backend: main/server.py
 
 Đảm bảo frontend gọi đúng endpoint server.
 
-Realtime quá chậm
+# 3. Realtime quá chậm
 
 Lỗi liên quan tới __pycache__.
 
@@ -207,8 +207,8 @@ Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương tr
 
 4. Server không chạy được
 - Thường là do 1 trong 2 lỗi sau:
-# Input type mismatch: Num of camera yêu cầu int, nhưng nhập giá trị khác (String...)
-# Link camera không đúng: Khi backend không tìm thấy địa chỉ camera => Không có frame truyền vào server => cv2 found no frame
++) Input type mismatch: Num of camera yêu cầu int, nhưng nhập giá trị khác (String...)
++) Link camera không đúng: Khi backend không tìm thấy địa chỉ camera => Không có frame truyền vào server => cv2 found no frame
 
 - Xin thầy đảm bảo link camera đúng (có /video). 
 - Với frontend, thầy có thể không nhập hoặc nhập sai
