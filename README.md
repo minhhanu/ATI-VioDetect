@@ -227,6 +227,12 @@ Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương tr
 - Lí do: Chưa có node_modules
 - Solution: cd frontend => Tải dependencies với lệnh: npm install
 
+## VI. Danh sách sinh viên
+2301040117 - Hoàng Văn Minh
+2201040121 - Phùng Thị Nga
+2301040161 - Lê Bảo Quốc
+
+
 Nếu có vấn đề gì, xin hãy liên hệ với em
 # Email: hoangvanminh2100@gmail.com
 # Phone number + zalo: 0399593750
