@@ -6,6 +6,7 @@
 
 I. Giới thiệu & Cấu hình đề xuất
 Link train model AI colab: https://drive.google.com/drive/folders/1TneJrUoO49BuFWTmKps8brZQUrFWuJyN?usp=drive_link
+Slide cũng ở trong folder project luôn ạ
 Em chào thầy ạ
 Đây là phần hướng dẫn chạy project ạ
 
@@ -14,27 +15,35 @@ Model (ResNet50 + TSM) sẽ mặc định dùng GPU để xử lí
 Laptop của em: Gigabyte G5
 Operating system: Window 11
 RAM: 8GB
+
 GPU: NVIDIA GeForce RTX 3050 Laptop
+
 CPU: 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz)
 
-Để có thể chạy dự đoán bạo lực realtime, nên đảm bảo cấu hình tầm này ạ
+Để chạy dự đoán bạo lực realtime, nên đảm bảo cấu hình tương đương.
 
-## II. Chạy local - Có video hướng dẫn
-# 1. Chạy backend
-Step 1: cd tới backend folder
-Step 2: Nhập "python -m uvicorn main.server:app --reload"
+## II. Chạy Local - Có video hướng dẫn
+# 1️⃣ Chạy backend
+cd backend
+python -m uvicorn main.server:app --reload
 
-Dấu hiệu khi backend chạy dc:
-- Model được load
-- Có thông báo server chạy dc và địa chỉ của server
-- Terminal hỏi số lượng camera
+
+Dấu hiệu backend chạy được:
+
+Model được load.
+
+Có thông báo server chạy và địa chỉ server.
+
+Terminal hỏi số lượng camera.
 
 # 2. Chạy frontend
 Step 1: cd tới frontend
 Step 2: npm install (để có thư mục node_modules)
 Step 2: Nhập "npx vite --host --port 5731"
 
-Dấu hiệu khi frontend chạy dc: Có link hiện ra
+Dấu hiệu frontend chạy được:
+
+Terminal hiện link để mở giao diện.
 
 # 3. Kết nối camera:
 
@@ -48,48 +57,68 @@ Dấu hiệu khi frontend chạy dc: Có link hiện ra
 - Tuy nhiên, khi copy link camera vào backend và frontend, phải thêm "/video" vào nữa
 http://192.168.1.14:8080 => http://192.168.1.14:8080/video 
 
-Terminal hiển thị ra json, frontend render dc là chạy dc rồi ạ
-Xin hãy xem video để minh họa trực quan hơn ạ
+Terminal backend hiển thị JSON, frontend render được là OK.
 
-## IV. Chạy với docker
-# Link repo ở dockerhub của em
+Xem video hướng dẫn để minh họa trực quan hơn.
+
+## III. Chạy với Docker
+
+Repo Docker Hub:
 https://hub.docker.com/repository/docker/minhvanhanu/ati-docker-files/general
 
-# 1. Chạy backend
-- cd backend
+# 1️⃣ Backend
 
-- Build images: docker build -t vio-backend . 
-- File docker nặng 12GB, nên nếu thầy ko muốn build images khi phải chờ lâu, có thể trực tiếp pull từ dockerhub của em
-- Pull docker: docker pull minhvanhanu/ati-docker-files:backend
+Build image từ source:
 
-- Chạy backend: docker run -it --name vio-backend -p 8000:8000 367aba271b333
-- Phải chạy dạng interactive để nhập số lượng camera (Thầy nhìn log hơi giống lỗi nhưng...nó cũng ko lỗi đâu thầy...)
+cd backend
+docker build -t vio-backend .
+(Image của em nặng 12GB lận nên có thể crash)
 
-- Test backend:
-docker exec -it <container_id> python -c "import torch; print(torch.__version__, torch.cuda.is_available())" 
-- Kiểm tra torch version
-2.1.0 True 
-- Output ra như vậy là dc ạ
+Hoặc pull trực tiếp từ Docker Hub:
 
-- Nếu dùng NVIDIA docker
-docker run --gpus all -p 8000:8000 vio-backend 
+docker pull minhvanhanu/ati-docker-files:backend
 
-# 2. Chạy frontend
-- cd frontend
 
-nếu thầy muốn tự build images
-- docker build -t vio-frontend . 
+Chạy backend (interactive để nhập số lượng camera):
 
-nếu thầy muốn pull frontend của em về
-- docker pull minhvanhanu/ati-docker-files:frontend 
+docker run -it --name vio-backend -p 8000:8000 vio-backend
 
-- Chạy frontend: docker run -p 5731:80 vio-frontend
 
-Khi frontend hiện link http://localhost:5731 là OK
-- Sau đó, kết nối camera như trong video hướng dẫn
+Test backend:
 
-V. Thư viện và phiên bản sử dụng (trường hợp không chạy được Docker)
-1️⃣ Backend
+docker exec -it <container_id> python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+
+
+Output mong muốn: 2.1.0 True
+
+Nếu dùng NVIDIA docker:
+
+docker run --gpus all -p 8000:8000 vio-backend
+
+# 2️⃣ Frontend
+
+Build image:
+
+cd frontend
+docker build -t vio-frontend .
+
+
+Hoặc pull image có sẵn:
+
+docker pull minhvanhanu/ati-docker-files:frontend
+
+
+Chạy frontend:
+
+docker run -p 5731:80 vio-frontend
+
+
+Mở trình duyệt tới: http://localhost:5731
+
+Sau đó, kết nối camera như trong hướng dẫn Local.
+
+## IV. Thư viện và phiên bản sử dụng (trường hợp không chạy được Docker)
+# 1️⃣ Backend
 
 Python & pip:
 
@@ -115,17 +144,16 @@ python-multipart 0.0.20
 
 Local module (project-specific):
 
-Thư mục tsm/temporal-shift-module/ops chứa các class TemporalShift và TSN được project sử dụng.
+Thư mục tsm/temporal-shift-module/ops chứa các class TemporalShift và TSN.
 
-Lưu ý: cần thêm thư mục này vào PYTHONPATH hoặc append vào sys.path trước khi chạy backend.
-Ví dụ trong code đã có:
+Cần thêm thư mục vào PYTHONPATH hoặc append vào sys.path trước khi chạy backend:
 
 import sys
 sys.path.append(r"tsm/temporal-shift-module")
 from ops.temporal_shift import TemporalShift
 from ops.models import TSN
 
-2️⃣ Frontend
+# 2️⃣ Frontend
 
 Node.js & npm:
 
@@ -149,33 +177,33 @@ typescript 5.8.2
 
 vite 6.2.0
 
-💡 Tham khảo chi tiết trong frontend/package.json nếu cần rebuild hoặc chạy local frontend.
+Tham khảo chi tiết trong frontend/package.json nếu cần rebuild hoặc chạy local frontend.
 
+## V. Các lỗi thường gặp
 
-VI. Các lỗi thường gặp
-- Các thư viện cần thiết: Xin thầy hãy check trong backend/requirements.txt và frontend/package.json
-1. Port bị chiếm dụng => Kill bằng Pid
+Port bị chiếm dụng
+
 netstat -ano | findstr "TEN_PORT"
 taskkill /PID <PID_NUMBER> /F
 
-2. Không gửi hoặc nhận được dữ liệu qua API (Không thể sử dụng tính năng realtime hoặc offline analysis)
-- File frontend cần check: 
-# frontend/App.tsx (kiểm tra dòng fetch API "/realtime") 
-# frontend/components/VideoUploader.tsx (kiểm tra dòng fetch API "/upload")
 
-- File backend cần check: main/server.py -- chạy thử
-# Check link server và link frontend
-# Có thể server là http:127:...
-# Nhưng có thể frontend khi fetch lại không dùng địa chỉ của server
+Không gửi/nhận dữ liệu qua API
 
-- Đảm bảo frontend đang gọi đúng endpoint
+Kiểm tra frontend:
 
-# Thầy hãy thử nhập {link server + "/docs"} vào trình duyệt để thử API, xem server có chạy không
-# Nếu server chạy mà frontend không gen giao diện => Sai API
+frontend/App.tsx (fetch API /realtime)
 
-3. Realtime quá chậm đến mức có thể coi là mất realtime
-- Vấn đề với __pycache__: Lúc mới chạy, chương trình có thể chưa tạo ra các tệp .pyc trong thư mục __pycache__, khiến chương trình chạy chậm.
-- Giải pháp: Hãy để cho hệ thống chạy và sau khoảng 40 JSON (hoặc nhiều hơn) được tạo ra, chương trình sẽ chạy nhanh dần và đạt hiệu suất realtime ổn định.
+frontend/components/VideoUploader.tsx (fetch API /upload)
+
+Kiểm tra backend: main/server.py
+
+Đảm bảo frontend gọi đúng endpoint server.
+
+Realtime quá chậm
+
+Lỗi liên quan tới __pycache__.
+
+Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương trình sẽ đạt hiệu suất ổn định.
 
 4. Server không chạy được
 - Thường là do 1 trong 2 lỗi sau:
