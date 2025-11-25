@@ -1,5 +1,5 @@
 {
-  "name": "AI Surveillance Dashboard",
+  "name": "ATI VioDetect",
   "description": "A real-time surveillance dashboard that displays multiple MJPEG camera streams, receives continuous data updates, and allows users to upload video clips for analysis.",
   "requestFramePermissions": [
     "camera"

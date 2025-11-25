@@ -1,7 +1,12 @@
+# ==== Numeric ====
 numpy<2
+
+# ==== FastAPI ====
 fastapi==0.121.1
 uvicorn==0.38.0
-opencv-python==4.12.0.88
-tqdm==4.67.1
-ffmpeg-python==0.2.0
 python-multipart==0.0.20
+
+# ==== Video processing ====
+opencv-python-headless==4.10.0.84
+ffmpeg-python==0.2.0
+tqdm==4.67.1

@@ -3,7 +3,6 @@ import time
 import cv2
 from resnet50.load_resnet50 import load_resnet50_model
 from tsm import load_tsm
-from post_analysis.clean_up import delete_resource
 
 from realtime_handling.frame_to_vector import frames_to_vectors
 from realtime_handling.prediction import predict_realtime

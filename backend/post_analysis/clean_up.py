@@ -2,30 +2,31 @@ import shutil
 from pathlib import Path
 
 def delete_resource(video_path):
-    """
-    Delete resource folders generated from a given video.
-    Specifically: {video_name}_folder and {video_name}_tensor
-
-    Args:
-        video_path (str or Path): Path to the original video file.
-    """
     video_path = Path(video_path)
-    base_name = video_path.stem  # e.g., "fight" from fight.mp4
+    base_name = video_path.stem
+    upload_dir = video_path.parent  # folder chứa video
 
-    # Các thư mục cần xóa
-    folders_to_delete = [
-        Path(f"{base_name}_folder"),
-        Path(f"{base_name}_folder_tensor")
+    # 1️⃣ Xóa video gốc
+    if video_path.exists():
+        try:
+            video_path.unlink()
+            print(f"[INFO] Deleted video: {video_path}")
+        except Exception as e:
+            print(f"[ERROR] Could not delete video: {e}")
+
+    # 2️⃣ Xóa folder scene/tensor liên quan (bên ngoài upload)
+    parent_dir = upload_dir.parent  # folder chứa upload và các folder scene/tensor
+    patterns = [
+        f"*_{base_name}_folder",
+        f"*_{base_name}_folder_tensor"
     ]
+    for pattern in patterns:
+        for folder in parent_dir.glob(pattern):
+            if folder.is_dir():
+                try:
+                    shutil.rmtree(folder)
+                    print(f"[INFO] Deleted folder: {folder}")
+                except Exception as e:
+                    print(f"[ERROR] Could not delete folder {folder}: {e}")
 
-    for folder in folders_to_delete:
-        if folder.exists() and folder.is_dir():
-            try:
-                shutil.rmtree(folder)
-                print(f"[INFO] Deleted folder: {folder}")
-            except Exception as e:
-                print(f"[ERROR] Could not delete {folder}: {e}")
-        else:
-            print(f"[WARN] Folder not found: {folder}")
-
-    print("[INFO] Resource cleanup complete.")
+    print("[INFO] Cleanup complete.")

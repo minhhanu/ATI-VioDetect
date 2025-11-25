@@ -1,0 +1,69 @@
+# 1. Cấu hình đề xuất
+Model (ResNet50 + TSM) sẽ mặc định dùng GPU để xử lí
+Laptop của em: Gigabyte G5
+Operating system: Window 11
+RAM: 8GB
+GPU: NVIDIA GeForce RTX 3050 Laptop
+CPU: 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz)
+
+Để chạy dự đoán bạo lực realtime, nên đảm bảo cấu hình tương đương.
+# 2. Các thư viện backend
+
+- Python & pip:
+
+Python 3.11.9
+
+pip 25.3
+
+numpy 2.1.3
+
+- Các thư viện chính:
+
+fastapi 0.121.1
+
+uvicorn 0.38.0
+
+opencv-python 4.12.0.88
+
+tqdm 4.67.1
+
+ffmpeg-python 0.2.0
+
+python-multipart 0.0.20
+
+torch: 2.7.1+cu118
+
+- Local module (project-specific):
++) Thư mục tsm/temporal-shift-module/ops chứa các class TemporalShift và TSN.
++) Cần thêm thư mục vào PYTHONPATH hoặc append vào sys.path trước khi chạy backend:
+
+Ví dụ: 
+import sys
+sys.path.append(r"tsm/temporal-shift-module")
+from ops.temporal_shift import TemporalShift
+from ops.models import TSN
+(Như trong file load_TSM)
++) Bản chất là ở trong code em đã viết dòng code để thêm library này vào rồi nhưng em nghĩ thầy cũng nên biết
+
+# 3. Các thư viện frontend
+Node.js & npm:
+
+Node.js v22.20.0
+
+npm 11.6.2
+
+Production dependencies (package.json):
+
+react 19.2.0
+
+react-dom 19.2.0
+
+Dev dependencies (package.json):
+
+@types/node 22.14.0
+
+@vitejs/plugin-react 5.0.0
+
+typescript 5.8.2
+
+vite 6.2.0

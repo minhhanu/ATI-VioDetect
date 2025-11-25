@@ -37,3 +37,6 @@ ENV/
 
 # Python logs
 *.log
+
+# vite
+.vite/

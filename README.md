@@ -5,28 +5,21 @@
 [IV. Các lỗi thường gặp]
 
 I. Giới thiệu & Cấu hình đề xuất
+
 Link train model AI colab: https://drive.google.com/drive/folders/1TneJrUoO49BuFWTmKps8brZQUrFWuJyN?usp=drive_link
-Slide cũng ở trong folder project luôn ạ
+Link Github repo: https://github.com/minhhanu/ATI-VioDetect
+Link Dockerhub: https://hub.docker.com/repository/docker/minhvanhanu/ati-docker-files/tags
+
+Slide cũng ở trong folder project này
 Em chào thầy ạ
-Đây là phần hướng dẫn chạy project ạ
+Đây là phần hướng dẫn chạy project
 
-# Note: 
-Model (ResNet50 + TSM) sẽ mặc định dùng GPU để xử lí
-Laptop của em: Gigabyte G5
-Operating system: Window 11
-RAM: 8GB
-
-GPU: NVIDIA GeForce RTX 3050 Laptop
-
-CPU: 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz)
-
-Để chạy dự đoán bạo lực realtime, nên đảm bảo cấu hình tương đương.
+Trong trường hợp docker không chạy được, xin hãy thầy hãy đọc qua ATI_VioDetect/requirements.txt
 
 ## II. Chạy Local - Có video hướng dẫn
 # 1️⃣ Chạy backend
 cd backend
 python -m uvicorn main.server:app --reload
-
 
 Dấu hiệu backend chạy được:
 
@@ -49,7 +42,6 @@ Terminal hiện link để mở giao diện.
 
 - Bọn em thường dùng app IP webcam ở Google play
 
-- Khi nhấn start server thì nó sẽ hiện ra cái ip của camera, trông như thế này: http://192.168.1.14:8080 (Thầy có thể bấm vô link để điều chỉnh)
 - Khi nhấn start server thì nó sẽ hiện ra cái ip của camera, trông như thế này: http://192.168.1.60:8080 (Thầy có thể bấm vô link để điều chỉnh camera)
 - Mỗi lần bật là app đổi ip nên khúc connect cam vẫn phải thủ công một chút
 - Yêu cầu là laptop + điện thoại cùng wifi ạ
@@ -57,9 +49,9 @@ Terminal hiện link để mở giao diện.
 - Tuy nhiên, khi copy link camera vào backend và frontend, phải thêm "/video" vào nữa
 http://192.168.1.14:8080 => http://192.168.1.14:8080/video 
 
-Terminal backend hiển thị JSON, frontend render được là OK.
+Terminal backend hiển thị JSON, frontend render được ạ
 
-Xem video hướng dẫn để minh họa trực quan hơn.
+Thầy có thể xem video hướng dẫn để trực quan hơn
 
 ## III. Chạy với Docker
 
@@ -74,26 +66,9 @@ cd backend
 docker build -t vio-backend .
 (Image của em nặng 12GB lận nên có thể crash)
 
-Hoặc pull trực tiếp từ Docker Hub:
+Hoặc pull trực tiếp từ Docker Hub: docker pull minhvanhanu/ati-docker-files:backend
 
-docker pull minhvanhanu/ati-docker-files:backend
-
-
-Chạy backend (interactive để nhập số lượng camera):
-
-docker run -it --name vio-backend -p 8000:8000 vio-backend
-
-
-Test backend:
-
-docker exec -it <container_id> python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
-
-
-Output mong muốn: 2.1.0 True
-
-Nếu dùng NVIDIA docker:
-
-docker run --gpus all -p 8000:8000 vio-backend
+Chạy backend (interactive để nhập số lượng camera): docker run -it --name vio-backend -p 8000:8000 vio-backend
 
 # 2️⃣ Frontend
 
@@ -101,7 +76,6 @@ Build image:
 
 cd frontend
 docker build -t vio-frontend .
-
 
 Hoặc pull image có sẵn:
 
@@ -116,78 +90,15 @@ docker run -p 5731:80 vio-frontend
 Mở trình duyệt tới: http://localhost:5731
 
 Sau đó, kết nối camera như trong hướng dẫn Local.
-
-## IV. Thư viện và phiên bản sử dụng (trường hợp không chạy được Docker)
-# 1️⃣ Backend
-
-Python & pip:
-
-Python 3.11.9
-
-pip 25.3
-
-numpy 2.1.3
-
-Các thư viện chính:
-
-fastapi 0.121.1
-
-uvicorn 0.38.0
-
-opencv-python 4.12.0.88
-
-tqdm 4.67.1
-
-ffmpeg-python 0.2.0
-
-python-multipart 0.0.20
-
-Local module (project-specific):
-
-Thư mục tsm/temporal-shift-module/ops chứa các class TemporalShift và TSN.
-
-Cần thêm thư mục vào PYTHONPATH hoặc append vào sys.path trước khi chạy backend:
-
-import sys
-sys.path.append(r"tsm/temporal-shift-module")
-from ops.temporal_shift import TemporalShift
-from ops.models import TSN
-
-# 2️⃣ Frontend
-
-Node.js & npm:
-
-Node.js v22.20.0
-
-npm 11.6.2
-
-Production dependencies (package.json):
-
-react 19.2.0
-
-react-dom 19.2.0
-
-Dev dependencies (package.json):
-
-@types/node 22.14.0
-
-@vitejs/plugin-react 5.0.0
-
-typescript 5.8.2
-
-vite 6.2.0
-
-Tham khảo chi tiết trong frontend/package.json nếu cần rebuild hoặc chạy local frontend.
-
 ## V. Các lỗi thường gặp
 
-Port bị chiếm dụng
+# 1. Port bị chiếm dụng
 
 netstat -ano | findstr "TEN_PORT"
 taskkill /PID <PID_NUMBER> /F
 
 
-Không gửi/nhận dữ liệu qua API
+# 2. Không gửi/nhận dữ liệu qua API
 
 Kiểm tra frontend:
 
@@ -199,16 +110,16 @@ Kiểm tra backend: main/server.py
 
 Đảm bảo frontend gọi đúng endpoint server.
 
-Realtime quá chậm
+# 3. Realtime quá chậm
 
 Lỗi liên quan tới __pycache__.
 
 Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương trình sẽ đạt hiệu suất ổn định.
 
-4. Server không chạy được
+# 4. Server không chạy được
 - Thường là do 1 trong 2 lỗi sau:
-# Input type mismatch: Num of camera yêu cầu int, nhưng nhập giá trị khác (String...)
-# Link camera không đúng: Khi backend không tìm thấy địa chỉ camera => Không có frame truyền vào server => cv2 found no frame
++) Input type mismatch: Num of camera yêu cầu int, nhưng nhập giá trị khác (String...)
++) Link camera không đúng: Khi backend không tìm thấy địa chỉ camera => Không có frame truyền vào server => cv2 found no frame
 
 - Xin thầy đảm bảo link camera đúng (có /video). 
 - Với frontend, thầy có thể không nhập hoặc nhập sai
@@ -222,10 +133,21 @@ Giải pháp: chạy backend khoảng 40 JSON (hoặc nhiều hơn), chương tr
 
 - Cách sửa: Chạy lại server và frontend từ đầu
 
-6. Frontend không khởi chạy
+# 5. Frontend không khởi chạy
 - Terminal yêu cầu tải vite@7.2.4
 - Lí do: Chưa có node_modules
 - Solution: cd frontend => Tải dependencies với lệnh: npm install
+
+## V. Danh sách sinh viên
+- 2301040117 - Hoàng Văn Minh
+
+- 2201040121 - Phùng Thị Nga
+
+- 2301040161 - Lê Bảo Quốc
+
+- 220140078 - Phạm Phương Hồng
+
+- 2201040006 - Nguyễn Hoàng Anh
 
 Nếu có vấn đề gì, xin hãy liên hệ với em
 # Email: hoangvanminh2100@gmail.com
