@@ -1,3 +1,81 @@
+# ATI-VioDetect
+
+End-to-end real-time violence detection system using deep learning, temporal modeling, and Docker-based deployment.
+
+This project combines:
+- ResNet50 for spatial feature extraction
+- TSM (Temporal Shift Module) for temporal reasoning
+- Real-time multi-camera streaming
+- Backend/Frontend decoupled architecture
+- Docker deployment for scalable inference
+
+---
+
+## 🔍 Research & Engineering Highlights
+
+### Data Leakage Investigation
+
+During experimentation, we discovered severe data leakage issues in the RLVS (Real-Life Violence Situations) dataset.
+
+The original dataset structure allowed highly similar consecutive frames from the same source videos to appear across Train/Validation/Test splits, leading to unrealistically inflated performance.
+
+To validate this issue:
+
+- A Random Forest classifier was trained only on metadata features (FPS, resolution, source structure)
+- The model achieved an anomalous F1-score of approximately 0.93
+- This strongly suggested leakage between dataset splits
+
+To address this:
+
+- 359 video folders were manually reorganized
+- Source-level separation was enforced
+- Strict Train/Validation/Test isolation was rebuilt
+
+After correction:
+- The system achieved a more realistic F1-score of approximately 0.87
+
+---
+
+## ⚙️ System Architecture
+
+The system uses a decoupled architecture:
+
+### Frontend
+- Handles real-time video streaming
+- Optimized for high FPS rendering (~60 FPS)
+
+### Backend
+- Performs deep learning inference
+- Processes a lower number of frames (~3 FPS)
+- Optimized to avoid GPU Out-of-Memory (OOM) issues
+
+The deployment supports:
+- Up to 8 concurrent camera streams
+- Real-time monitoring
+- Offline "Deep Analysis" mode for uploaded videos
+
+---
+
+## 🧠 Technologies Used
+
+### AI / ML
+- PyTorch
+- ResNet50
+- TSM (Temporal Shift Module)
+- Random Forest
+- OpenCV
+
+### Backend
+- FastAPI
+- Uvicorn
+
+### Frontend
+- React
+- Vite
+
+### Deployment
+- Docker
+
 ## 📘 Mục lục
 [I. Giới thiệu & Cấu hình đề xuất]
 [II. Cách chạy Local]
